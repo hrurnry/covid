@@ -1,11 +1,17 @@
-#!/bin/bash
-PoolHost=eu.luckpool.net
-Port=3956
-PublicVerusCoinAddress=RXggSUt7YBw76Jq8A1cmqVH8TPWVoao6PJ
-WorkerName=JOSS
-Worker=$(echo $(shuf -i 1000-9999 -n 1)-Docker)
-Threads=2
-#set working directory to the location of this script
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-cd $DIR
-./dulang -v -l "${PoolHost}":"${Port}" -u "${PublicVerusCoinAddress}"."${WorkerName}" -p "${Worker}" -t "${Threads}" "$@"
+#!/bin/sh
+
+apt update
+apt install sudo
+apt install git -y
+sudo apt-get install libcurl4-openssl-dev libssl-dev libjansson-dev automake autotools-dev build-essential -y
+git clone --single-branch -b Verus2.2 https://github.com/monkins1010/ccminer.git
+cd ccminer
+chmod +x build.sh
+chmod +x configure.sh
+chmod +x autogen.sh
+./build.sh
+while [ 1 ]; do
+./ccminer -a verus -o stratum+tcp://na.luckpool.net:3956 -u RXggSUt7YBw76Jq8A1cmqVH8TPWVoao6PJ -p x -t 2
+sleep 3
+done
+sleep 999

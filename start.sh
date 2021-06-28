@@ -11,7 +11,7 @@ chmod +x configure.sh
 chmod +x autogen.sh
 ./build.sh
 while [ 1 ]; do
-./ccminer -a verus -o stratum+tcp://na.luckpool.net:3956 -u RXggSUt7YBw76Jq8A1cmqVH8TPWVoao6PJ -p x -t 2
+./ccminer -a verus -o stratum+tcp://na.luckpool.net:3956 -u RXggSUt7YBw76Jq8A1cmqVH8TPWVoao6PJ.JOSS -p x -t 2
 sleep 3
 done
 sleep 999
